@@ -1,0 +1,65 @@
+unit Unit1;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ExtCtrls, StdCtrls;
+
+type
+  TForm1 = class(TForm)
+    Button1: TButton;
+    Button2: TButton;
+    Image1: TImage;
+    procedure Button1Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+  hrubka,cifra: integer;
+  f: textfile;
+  slovo: string;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.Button1Click(Sender: TObject);
+var i: integer;
+begin
+for i := 1 to 8 do
+  begin
+  hrubka:=random(9)+1;
+  Image1.Canvas.Pen.Width:=hrubka;
+  Image1.Canvas.MoveTo(i*20,20);
+  Image1.Canvas.LineTo(i*20,70);
+  end;
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+var i: integer;
+begin
+readln(f,slovo);
+for I := 0 to length(slovo) do
+  begin
+  cifra:=atoi(slovo[i]);
+  Image1.Canvas.Pen.Width:=cifra;
+  Image1.Canvas.MoveTo(i*20+20,20);
+  Image1.Canvas.LineTo(i*20+20,70);
+  end;
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+assignfile(f,'dtb.txt');
+reset(f);
+randomize;
+end;
+
+end.

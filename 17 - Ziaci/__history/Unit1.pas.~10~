@@ -1,0 +1,50 @@
+unit Unit1;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls;
+
+type
+  TForm1 = class(TForm)
+    Label1: TLabel;
+    Button1: TButton;
+    procedure Button1Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+  dtb: textfile;
+  rok,mesiac,den: integer;
+  rokS,mesiacS,denS: string[2];
+  meno: string;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.Button1Click(Sender: TObject);
+var i: integer;
+begin
+reset(dtb);
+i:=0;
+repeat
+readln(dtb,rokS,mesiacS,denS,meno);
+if ((strtoint(rokS)>=96) and (strtoint(mesiacS)>50)) then
+i:=i+1;
+until eof(dtb);
+label1.caption:='Dievèat mladších ako 15 je: '+inttostr(i);
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+assignfile(dtb,'dtb.txt');
+end;
+
+end.

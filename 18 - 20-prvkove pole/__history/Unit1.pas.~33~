@@ -1,0 +1,76 @@
+unit Unit1;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, ComCtrls;
+
+type
+  TForm1 = class(TForm)
+    Button1: TButton;
+    TrackBar1: TTrackBar;
+    Label1: TLabel;
+    Edit1: TEdit;
+    Label2: TLabel;
+    Memo1: TMemo;
+    Button2: TButton;
+    Label3: TLabel;
+    procedure FormCreate(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+  index, hodnota: integer;
+  myArray: array [1 .. 20] of integer;
+  rovnake: boolean;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+index:=trackbar1.position;
+hodnota:=strtoint(edit1.text);
+myArray[index]:=myArray[index]+hodnota;
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+var
+  I: Integer;
+begin
+i:=2;
+rovnake:=true;
+while rovnake=true do
+begin
+  if myArray[i-1]<>myArray[i] then
+    rovnake:=false;
+  i:=i+1;
+end;
+if rovnake=false then
+  label3.caption:='Pole nie je konstantne.'
+  else
+  label3.Caption:='Pole je konstantne.';
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+var
+  i: integer;
+begin
+memo1.clear;
+randomize;
+for i := 1 to 20 do
+begin
+  myArray[i]:=1;
+  memo1.Lines.append(inttostr(myArray[i]));
+end;
+end;
+
+end.

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2011.05.01 14:02:19.453.pas,\\psf\Home\Documents\Borland Studio Projects\Unit1.pas=\\psf\Home\Documents\Development\34 - Obesenec\Unit1.pas</Transaction>
+    <Transaction>2011.05.01 14:02:19.453.dfm,\\psf\Home\Documents\Borland Studio Projects\Unit1.dfm=\\psf\Home\Documents\Development\34 - Obesenec\Unit1.dfm</Transaction>
+    <Transaction>2011.05.01 14:06:53.000.bdsproj,\\psf\Home\Documents\Borland Studio Projects\Project1.bdsproj=\\psf\Home\Documents\Development\34 - Obesenec\Project1.bdsproj</Transaction>
+  </Transactions>
+</BorlandProject>

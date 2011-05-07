@@ -1,0 +1,54 @@
+unit Unit1;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls;
+
+type
+  TForm1 = class(TForm)
+    Button1: TButton;
+    procedure FormCreate(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+  f: textfile;
+  cislo, kolo1, kolo2, best1, best2, bestc, dis1, dis2: integer;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+reset(f);
+readln
+reset(f);
+repeat
+  readln(f,cislo,kolo1,kolo2);
+  if kolo1+kolo2 < bestc then
+    bestc:=kolo1+kolo2;
+  if kolo1 = 0 then
+    dis1:=dis1+1;
+  if kolo2 = 0 then
+    dis2:=dis2+1;
+  if kolo1<best1 then
+    best1:=kolo1;
+  if kolo2<best2 then
+    best2:=kolo2;
+until eof(f);
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+assignfile(f,'dtb.txt');
+end;
+
+end.

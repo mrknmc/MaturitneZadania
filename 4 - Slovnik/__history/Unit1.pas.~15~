@@ -1,0 +1,59 @@
+unit Unit1;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls;
+
+type
+  TForm1 = class(TForm)
+    Edit1: TEdit;
+    Button1: TButton;
+    Label1: TLabel;
+    Label2: TLabel;
+    procedure FormCreate(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+  f: textfile;
+  slovo: string;
+  jetam: bool;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+reset(f);
+jetam:=false;
+repeat
+  readln(f,slovo);
+  if slovo = edit1.text then
+    jetam:=true;
+
+    else
+    label2.caption:='Slovo '+edit1.text+' sa v databaze nenachadza. Zadaj preklad!';
+until eof(f);
+if jetam = true then
+  label2.caption:='Slovo '+edit1.text+' sa v databaze nachadza.'
+  else
+  label2.caption:='Slovo '+edit1.text+' sa v databaze nenachadza. Zadaj preklad!';
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+edit1.Text:='';
+label1.caption:='Zadaj slovo:';
+Button1.Caption:='OK';
+assignfile(f,'dtb.txt');
+end;
+
+end.
