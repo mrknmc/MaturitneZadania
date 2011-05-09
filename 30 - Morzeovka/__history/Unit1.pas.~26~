@@ -1,0 +1,57 @@
+unit Unit1;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls;
+
+type
+  TForm1 = class(TForm)
+    Button1: TButton;
+    Label1: TLabel;
+    procedure FormCreate(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+  g, f: textfile;
+  pismeno, preklad: char;
+  mors: string;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+reset(f);
+reset(g);
+repeat
+  read(g,pismeno);
+  if ord(pismeno) > 96 then
+    preklad:=char(ord(pismeno)-32)
+  else
+    preklad:=pismeno;
+  repeat
+    readln(f,pismeno,mors);
+    if pismeno = preklad then
+      label1.caption:=label1.caption+mors;
+  until pismeno = preklad;
+until eof(g);
+closefile(f);
+closefile(g);
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+assignfile(f,'morseovka.txt');
+assignfile(g,'text.txt');
+end;
+
+end.

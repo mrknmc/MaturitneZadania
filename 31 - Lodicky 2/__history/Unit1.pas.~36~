@@ -1,0 +1,81 @@
+unit Unit1;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, ExtCtrls;
+
+type
+  TForm1 = class(TForm)
+    Image1: TImage;
+    Button1: TButton;
+    Timer1: TTimer;
+    procedure Button1Click(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+  x, y, z: integer;
+  lodicka: array [1 .. 10] of integer;
+
+implementation
+
+{$R *.dfm}
+
+procedure lodicka (x, y: integer);
+begin
+   Form1.Image1.Canvas.MoveTo(x,y);
+   Form1.Image1.Canvas.LineTo(x+30,y);
+   Form1.Image1.Canvas.MoveTo(x+30,y);
+   Form1.Image1.Canvas.LineTo(x+25,y+10);
+   Form1.Image1.Canvas.MoveTo(x+25,y+10);
+   Form1.Image1.Canvas.LineTo(x+5,y+10);
+   Form1.Image1.Canvas.MoveTo(x+5,y+10);
+   Form1.Image1.Canvas.LineTo(x,y);
+   Form1.Image1.Canvas.MoveTo(x+15,y);
+   Form1.Image1.Canvas.LineTo(x+15,y-20);
+   Form1.Image1.Canvas.MoveTo(x+15,y-20);
+   Form1.Image1.Canvas.LineTo(x+25,y-10);
+   Form1.Image1.Canvas.MoveTo(x+25,y-10);
+   Form1.Image1.Canvas.LineTo(x+15,y-5);
+end;
+
+
+procedure TForm1.Button1Click(Sender: TObject);
+var
+  I: Integer;
+begin
+for I := 1 to 10 do
+begin
+  lodicka[i]:=lodicka(0,30*i);
+end;
+timer1.enabled:=true;
+button1.Enabled:=false;
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+randomize;
+doublebuffered:=true;
+end;
+
+procedure TForm1.Timer1Timer(Sender: TObject);
+var
+  i: integer;
+begin
+image1.Canvas.FillRect(image1.ClientRect);
+for I := 1 to 10 do
+begin
+  lodicka[i]:=lodicka[i]+random(10);
+  lodicky(lodicka[i],i*30);
+end;
+end;
+
+end.
