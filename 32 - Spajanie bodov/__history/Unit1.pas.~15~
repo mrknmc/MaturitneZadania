@@ -50,7 +50,7 @@ procedure TForm1.Image1MouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
 if Shift = [ssLeft] then
-  image1.canvas.moveto(x,y);
+  image1.canvas.lineto(x,y);
 end;
 
 procedure TForm1.Image1MouseMove(Sender: TObject; Shift: TShiftState; X,

@@ -12,6 +12,7 @@ type
     Button1: TButton;
     Label1: TLabel;
     Label2: TLabel;
+    Label3: TLabel;
     procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
@@ -23,7 +24,7 @@ var
   Form1: TForm1;
   rok, cislo: integer;
   retazec: string;
-  znamenie: array [1 .. 12] of string = ('opica', 'kohut', 'pes', 'svina', 'potkan', 'byvol','tiger', 'zajac', 'drak', 'had', 'kon', 'ovca');
+  znamenie: array [0 .. 11] of string = ('opica', 'kohut', 'pes', 'svina', 'potkan', 'byvol','tiger', 'zajac', 'drak', 'had', 'kon', 'ovca');
 
 implementation
 
@@ -36,6 +37,7 @@ begin
 cislo:=0;
 retazec:=edit1.text;
 rok:=strtoint(edit1.text);
+label3.caption:=znamenie[rok mod 12];
 for I := 1 to length(retazec) do
   cislo:=cislo+strtoint(retazec[i]);
 label2.Caption:='Vase stastne cislo je '+inttostr(cislo)+'.';;

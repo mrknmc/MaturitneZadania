@@ -22,6 +22,7 @@ type
 var
   Form1: TForm1;
   rok, cislo: integer;
+  retazec: string;
   znamenie: array [1 .. 12] of string = ('opica', 'kohut', 'pes', 'svina', 'potkan', 'byvol','tiger', 'zajac', 'drak', 'had', 'kon', 'ovca');
 
 implementation
@@ -33,10 +34,11 @@ var
   I: Integer;
 begin
 cislo:=0;
+retazec:=edit1.text;
 rok:=strtoint(edit1.text);
-for I := 1 to length(edit1.text) do
-  cislo:=cislo+edit1.text[i];
-label2.Caption:='Vase stastne cislo je '+inttostr(cislo);
+for I := 1 to length(retazec) do
+  cislo:=cislo+strtoint(retazec[i]);
+label2.Caption:='Vase stastne cislo je '+inttostr(cislo)+'.';;
 end;
 
 end.

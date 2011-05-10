@@ -4,14 +4,16 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls;
+  Dialogs, ExtCtrls, StdCtrls;
 
 type
   TForm1 = class(TForm)
     Button1: TButton;
-    Label1: TLabel;
+    Image1: TImage;
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure Image1MouseMove(Sender: TObject; Shift: TShiftState; X,
+      Y: Integer);
   private
     { Private declarations }
   public
@@ -20,9 +22,8 @@ type
 
 var
   Form1: TForm1;
-  g, f: textfile;
-  pismeno, preklad: char;
-  mors: string;
+  f: textfile;
+  p,bodx,body: integer;
 
 implementation
 
@@ -31,28 +32,23 @@ implementation
 procedure TForm1.Button1Click(Sender: TObject);
 begin
 reset(f);
-reset(g);
 repeat
-reset(f);
-  read(g,pismeno);
-  if ord(pismeno) > 96 then
-    preklad:=char(ord(pismeno)-32)
-  else
-    preklad:=pismeno;
-  repeat
-    readln(f,pismeno,mors);
-    if pismeno = preklad then
-      label1.caption:=label1.caption+mors;
-  until eof(f);
-until eof(g);
-closefile(f);
-closefile(g);
+  readln(f,p,bodx,body);
+  image1.canvas.Ellipse(bodx-1,body-1,bodx+1,body+1);
+  image1.canvas.textout(bodx+4,body,inttostr(p));
+until eof(f);
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
-assignfile(f,'morseovka.txt');
-assignfile(g,'text.txt');
+assignfile(f,'dtb.txt');
+end;
+
+procedure TForm1.Image1MouseMove(Sender: TObject; Shift: TShiftState; X,
+  Y: Integer);
+begin
+if Shift = [ssLeft] then
+  image1.canvas.lineto(x,y);
 end;
 
 end.

@@ -8,10 +8,16 @@ uses
 
 type
   TForm1 = class(TForm)
-    Button1: TButton;
+    Edit1: TEdit;
     Label1: TLabel;
-    procedure FormCreate(Sender: TObject);
+    Label2: TLabel;
+    Edit2: TEdit;
+    Button1: TButton;
+    Button2: TButton;
+    Label3: TLabel;
     procedure Button1Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -20,9 +26,9 @@ type
 
 var
   Form1: TForm1;
-  g, f: textfile;
-  pismeno, preklad: char;
-  mors: string;
+  meno: string;
+  f: textfile;
+  vysledok: integer;
 
 implementation
 
@@ -30,29 +36,21 @@ implementation
 
 procedure TForm1.Button1Click(Sender: TObject);
 begin
-reset(f);
-reset(g);
+append(f,edit2.text,edit1.text);
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+begin
+readln(f,vysledok,vitaz);
 repeat
-reset(f);
-  read(g,pismeno);
-  if ord(pismeno) > 96 then
-    preklad:=char(ord(pismeno)-32)
-  else
-    preklad:=pismeno;
-  repeat
-    readln(f,pismeno,mors);
-    if pismeno = preklad then
-      label1.caption:=label1.caption+mors;
-  until eof(f);
-until eof(g);
-closefile(f);
-closefile(g);
+  readln(f,vysledok,meno)
+until eof(f);
+label3.Caption:='Vyhral to '+vitaz+'.';
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
-assignfile(f,'morseovka.txt');
-assignfile(g,'text.txt');
+assignfile(f,'dtb,txt');
 end;
 
 end.

@@ -26,9 +26,9 @@ type
 
 var
   Form1: TForm1;
-  listina: array [1 .. 100,1 .. 2] of string;
-  vitaz: string;
-  i,j: integer;
+  meno: string;
+  f: textfile;
+  vysledok,najlepsi: integer;
 
 implementation
 
@@ -36,25 +36,23 @@ implementation
 
 procedure TForm1.Button1Click(Sender: TObject);
 begin
-listina[i,1]:=edit1.text;
-listina[i,2]:=edit2.text;
-i:=i+1;
+append(f,edit2.text,edit1.text);
 end;
 
 procedure TForm1.Button2Click(Sender: TObject);
 begin
-vitaz:=listina[1,1];
-while listina[i,2]<>'' do
-begin
-  j:=j+1;
-end;
-
+readln(f,najlepsi,meno);
+repeat
+  readln(f,vysledok,meno);
+  if vysledok< then
+  
+until eof(f);
 label3.Caption:='Vyhral to '+vitaz+'.';
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
-i:=1;
+assignfile(f,'dtb,txt');
 end;
 
 end.

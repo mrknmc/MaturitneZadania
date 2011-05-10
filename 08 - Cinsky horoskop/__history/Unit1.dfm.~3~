@@ -26,12 +26,6 @@ object Form1: TForm1
     Width = 3
     Height = 13
   end
-  object Label3: TLabel
-    Left = 48
-    Top = 176
-    Width = 3
-    Height = 13
-  end
   object Edit1: TEdit
     Left = 48
     Top = 48

@@ -35,7 +35,7 @@ object Form1: TForm1
     Height = 13
   end
   object Edit1: TEdit
-    Left = 48
+    Left = 40
     Top = 40
     Width = 121
     Height = 21
