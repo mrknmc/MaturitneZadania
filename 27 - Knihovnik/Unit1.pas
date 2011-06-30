@@ -36,14 +36,15 @@ reset(f);
 sirkaSpolu:=0;
 repeat
   readln(f,sirkaKnihy);
-  sirkaSpolu:=sirkaSpolu+sirkaKnihy;
-  if sirkaSpolu>sirkaPolice then
+  if sirkaSpolu+sirkaKnihy>sirkaPolice then
   begin
-    memo1.Lines.append(inttostr(sirkaSpolu-sirkaKnihy));
+    memo1.Lines.append(inttostr(sirkaSpolu));
     sirkaSpolu:=sirkaKnihy;
-  end;
+  end
+  else
+    sirkaSpolu:=sirkaSpolu+sirkaKnihy;
 until eof(f);
-if (eof(f)) and (sirkaSpolu<=sirkaPolice) then
+if (sirkaSpolu<=sirkaPolice) then
   label1.caption:='Vsetky knihy sa do police zmestili';
 end;
 
